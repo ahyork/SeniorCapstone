@@ -1,16 +1,20 @@
 <header class="header">
 
   <div class="header_content">
+      <!--
     <label class="theme_changer">
       <input theme_toggle type="checkbox">
       <div class="button"></div>
     </label>
+      -->
     <a class="header_circle" href="{{ '/' | relative_url }}">
       <img src="{{ site.user.pic | relative_url }}" alt="{{ site.user.picAlt }}">
     </a>
     <span class="header_name">{{ site.user.name }}</span>
     <span class="header_job">{{ site.user.job }}</span>
     <span class="header_mes">{{ site.user.message }}</span>
+    <a href="https://github.com/ahyork">GitHub</a>
+    <a href="https://www.linkedin.com/in/arthur-york-722947172/">LinkedIn</a>
 
     <nav class="nav">
       <ul class="nav_list">
