@@ -1,3 +1,7 @@
+---
+layout: info
+---
+
 # Arthur York Senior Capstone 2020
 
 This website contains all the information for Arthur York's Senior Capstone Research Project. This project is about developing and expanding [`PorousMaterials.jl`](https://github.com/SimonEnsemble/PorousMaterials.jl), a free and open source software package for `Julia` to run molecular simulations, specifically with gas adsorption inside nano-porous materials [1]. This codebase is being developed in conjunction with other undergraduates, graduate students, Dr. Cory Simon, and various open-source contributors.  
