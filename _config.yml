@@ -37,7 +37,7 @@ defaults:
       comment: true   
 
 markdown_ext: "markdown,mkdown,mkdn,mkd,md"
-markdown: maruku
+markdown: kramdown
 
 # Filtering Content
 show_drafts: null
