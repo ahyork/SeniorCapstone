@@ -1,5 +1,5 @@
 ---
-layout: info
+layout: page
 ---
 
 # Arthur York Senior Capstone 2020
