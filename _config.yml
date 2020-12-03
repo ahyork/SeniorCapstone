@@ -1,10 +1,9 @@
 
-title: Catbook #Your awesome title
-email: #youremail@domain.com
+title: Molecular Simulation
+email: yorkar@oregonstate.edu
 description: > # this means to ignore newlines until "baseurl"
-  Write an awesome description for your new site here. You can edit this
-  line in _config.yml. It will appear in your document head meta (for
-  Google search results) and in your feed.xml site description.
+    A collection of all work done for Arthur York's senior capstone research
+    project.
 
 baseurl: # the subpath of the site
 url: http://starry99.github.io/catbook # the base hostname & protocol for your site
@@ -18,11 +17,11 @@ google_analytics: #UA—XXXXXXXX-X
 disqus_shortname: #disqus shortname
 
 user:
-  name: Catbook
-  pic: /assets/img/cat.jpg
-  picAlt: "catbook"
-  job: a category-centric theme
-  aboutme: true # comment this out if you don't need the 'about' page.
+  name: Arthur York
+  pic: /assets/img/arthur_hector.JPG
+  picAlt: "Arthur York"
+  job: 
+  aboutme: false # comment this out if you don't need the 'about' page.
 
 exclude:
   - README.md
