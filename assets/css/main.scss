@@ -70,6 +70,11 @@
     box-sizing: border-box;
 }
 
+code, kbd, samp {
+    font-family: monospace, monospace;
+    font-size: 0.9em;
+}
+
 html {
     margin: 0;
     padding: 0;
