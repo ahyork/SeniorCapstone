@@ -20,7 +20,7 @@ user:
   name: Arthur York
   pic: /assets/img/arthur_hector.JPG
   picAlt: "Arthur York"
-  job: 
+  job: Senior Capstone
   aboutme: false # comment this out if you don't need the 'about' page.
 
 exclude:
