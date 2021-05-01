@@ -32,3 +32,7 @@ end
 At the end of the simulation, the file is closed. and can be read into a vizualization software such as ViSiT to view their positions. The image below shows Xenon atoms (blue) inside the CaSDB MOF. The dark blue box is the simulation box used for the simulation. The unit cell for CaSDB was replicated by (3, 6, 2) to create the full simulation box.
 
 ![single snapshot](../assets/img/xe_in_casdb_snapshot.png)
+
+![density grid](../assets/img/xe_in_casdb_density_grid.png)
+
+![awesome gif](../assets/img/simulation_movie_100frames.gif)
