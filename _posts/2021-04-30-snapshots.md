@@ -33,6 +33,18 @@ At the end of the simulation, the file is closed. and can be read into a vizuali
 
 ![single snapshot](../assets/img/xe_in_casdb_snapshot.png)
 
+# Tracking Adsorbates within Voxels
+
+Tracking the positions of individual atoms can be useful for understanding how this simulation works, but they do not provide conclusive data on where likely adsorption sites are located. To combat this, I set up a system that tracks teh number of occurences of adsorbates within voxels instead of tracking individual adsorbate positions. I use a [Grid](https://simonensemble.github.io/PorousMaterials.jl/stable/manual/boxes_crystals_grids/#PorousMaterials.Grid) object and superimpose it over the entire simulation box so that each element of the density grid corresponds to a voxel in the simulation. At every snapshot, I increment each element of the density grid by the number of adsorbates that appear in the related voxel. At the end of the simulation I divide each element of the density grid by the number of snapshots taken to find the probability an adsorbate will be located at that position. 
+
+The density grid functionality is controlled by the snapshot\_frequency and three other keyword arguments. The snapshot\_frequency still controls how many sample cycles between each update of the density grid. The calculate\_density\_grid determines whether the simulation will perform these snapshots. The density\_grid\_dx determines the spacing between individual voxels of the grid (in Angstroms). The density\_grid\_species determines the atom that will be counted in the density grid. This only needs to be specified if the adsorbate has more than one unique atom in it. 
+
+Before the cycles begin, the density grid is set up so that each voxel is correctly spaced by comparing the size of the box to the minimum voxel spacing. If a density grid is not being kept, it will default to having 0 points in all directions. After every snapshot\_frequency sample cycles, the grid will be updated with the [update\_density!](https://simonensemble.github.io/PorousMaterials.jl/stable/manual/boxes_crystals_grids/#PorousMaterials.update_density!) function. It iterates through every molecule in the adsorbate array and converts its fractional coordinates to an index in the density grid using [xf\_to\_id](https://simonensemble.github.io/PorousMaterials.jl/stable/manual/boxes_crystals_grids/#PorousMaterials.xf_to_id) (shown below). It then increments the grid at that index. At the end of the simulation, every entry of the density grid is divided by the number of snapshots taken. The resulting grid is stored in the results dictionary for later use. 
+
+To visualize the density grid, it first needs to taken from the results dictionary and written to a .cube file. This file can then be opened in a visualizer such as ViSiT alongside the crystal structure, and it will appear as a cloud density plot. The figure below shows the density grid laid over CaSDB. The dark blue indicates a high probability of a Xenon atom beign found at that location. The light blue and white mean there is a low or zero probability of a xenon beign located there. 
+
 ![density grid](../assets/img/xe_in_casdb_density_grid.png)
+
+The results from the individual atom snapshots and the density grid can be viewed at the same time in ViSiT for an interesting visual. Here I took all 100 individual atom snapshots and laid them over the density grid cloud plot and generated a gif. 
 
 ![awesome gif](../assets/img/simulation_movie_100frames.gif)
