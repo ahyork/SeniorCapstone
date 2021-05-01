@@ -41,6 +41,23 @@ The density grid functionality is controlled by the snapshot\_frequency and thre
 
 Before the cycles begin, the density grid is set up so that each voxel is correctly spaced by comparing the size of the box to the minimum voxel spacing. If a density grid is not being kept, it will default to having 0 points in all directions. After every snapshot\_frequency sample cycles, the grid will be updated with the [update\_density!](https://simonensemble.github.io/PorousMaterials.jl/stable/manual/boxes_crystals_grids/#PorousMaterials.update_density!) function. It iterates through every molecule in the adsorbate array and converts its fractional coordinates to an index in the density grid using [xf\_to\_id](https://simonensemble.github.io/PorousMaterials.jl/stable/manual/boxes_crystals_grids/#PorousMaterials.xf_to_id) (shown below). It then increments the grid at that index. At the end of the simulation, every entry of the density grid is divided by the number of snapshots taken. The resulting grid is stored in the results dictionary for later use. 
 
+```julia
+function xf_to_id(n_pts::Tuple{Int, Int, Int}, xf::Array{Float64, 1})
+    voxel_id = floor.(Int, xf .* n_pts) .+ 1
+    # because of periodic boundary conditions, some adsorbate positions fall
+    #   outside the simulation box, they are translated back within the box by
+    #   either adding or subtracting n_pts.
+    for k = 1:3
+        if voxel_id[k] <= 0
+            voxel_id[k] += n_pts[k]
+        elseif voxel_id[k] > n_pts[k]
+            voxel_id[k] -= n_pts[k]
+        end
+    end
+    return voxel_id
+end
+```
+
 To visualize the density grid, it first needs to taken from the results dictionary and written to a .cube file. This file can then be opened in a visualizer such as ViSiT alongside the crystal structure, and it will appear as a cloud density plot. The figure below shows the density grid laid over CaSDB. The dark blue indicates a high probability of a Xenon atom beign found at that location. The light blue and white mean there is a low or zero probability of a xenon beign located there. 
 
 ![density grid](../assets/img/xe_in_casdb_density_grid.png)
